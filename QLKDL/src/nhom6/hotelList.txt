@@ -1,0 +1,5 @@
+KSH001,ABC Hotel,123 ABC Street,3,100,50.0,Swimming pool,Phone: 1234567890
+KSH002,XYZ Resort,456 XYZ Street,4,200,80.0,Gym,Phone: 9876543210
+KSH003,Golden Palace,789 Golden Street,5,150,120.0,Spa,Phone: 4567891230
+KSH004,Silver Sands,321 Silver Street,4,100,70.0,Restaurant,Phone: 6543217890
+KSH005,Ocean View,654 Ocean Street,3,120,60.0,Wi-Fi,Phone: 7891234560
