@@ -1,0 +1,5 @@
+T001, Hanh trinh bien Dong, 2023-06-01, 2023-06-10, Bien Dong, 50, 1000.0, 400.0, Chuyen khoan
+T002, Kham pha hang dong, 2023-07-01, 2023-07-07, Hang Son Doong, 20, 2000.0, 800.0, Tien mat
+T003, Du lich camp, 2023-08-01, 2023-08-05, Rung nui Phong Nha, 30, 1500.0, 600.0, Chuyen khoan
+T004, Kham pha di san van hoa, 2023-09-01, 2023-09-08, Hue - Hoi An, 40, 1800.0, 720.0, Tien mat
+T005, Du lich bien Nha Trang, 2023-10-01, 2023-10-07, Nha Trang, 25, 1200.0, 480.0, Chuyen khoan

@@ -4,7 +4,6 @@ package nhom6;
 
 public class Hotel {
     private String maKS;
-    private String tenKhachSan;
     private String diaChiKhachSan;
     private int soSao; //VD: Khách sạn 3*, 4*, 5*
     private int soLuongPhong;
@@ -15,9 +14,8 @@ public class Hotel {
     public Hotel() {
     }
 
-    public Hotel(String maKS, String tenKhachSan, String diaChiKhachSan, int soSao, int soLuongPhong, double giaPhong, String tienNghiKhachSan, String thongTinLienHe) {
+    public Hotel(String maKS, String diaChiKhachSan, int soSao, int soLuongPhong, double giaPhong, String tienNghiKhachSan, String thongTinLienHe) {
         this.maKS = maKS;
-        this.tenKhachSan = tenKhachSan;
         this.diaChiKhachSan = diaChiKhachSan;
         this.soSao = soSao;
         this.soLuongPhong = soLuongPhong;
@@ -28,10 +26,6 @@ public class Hotel {
 
     public String getMaKS() {
         return maKS;
-    }
-
-    public String getTenKhachSan() {
-        return tenKhachSan;
     }
 
     public String getDiaChiKhachSan() {
@@ -62,10 +56,6 @@ public class Hotel {
         this.maKS = maKS;
     }
 
-    public void setTenKhachSan(String tenKhachSan) {
-        this.tenKhachSan = tenKhachSan;
-    }
-
     public void setDiaChiKhachSan(String diaChiKhachSan) {
         this.diaChiKhachSan = diaChiKhachSan;
     }
@@ -89,6 +79,8 @@ public class Hotel {
     public void setThongTinLienHe(String thongTinLienHe) {
         this.thongTinLienHe = thongTinLienHe;
     }
+
+    
     
     
 }

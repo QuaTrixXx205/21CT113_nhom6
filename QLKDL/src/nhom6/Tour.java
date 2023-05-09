@@ -4,20 +4,19 @@ package nhom6;
 
 public class Tour {
     private String tourID;
-    private String tenKhach;//Tên khách đặt tour
     private String tenTour;
     private String ngayKhoiHanh;
     private String ngayKetThuc;
     private String diaDiem;
     private int soLuongKhachToiDa;
     private double giaTour;
-    private double toTienDatCoc; //Khoảng 40%
+    private double soTienDatCoc; //Khoảng 40%
     private String phuongThucThanhToan;
 
     public Tour() {
     }
 
-    public Tour(String tourID, String tenTour, String ngayKhoiHanh, String ngayKetThuc, String diaDiem, int soLuongKhachToiDa, double giaTour, String phuongThucThanhToan) {
+    public Tour(String tourID, String tenTour, String ngayKhoiHanh, String ngayKetThuc, String diaDiem, int soLuongKhachToiDa, double giaTour, double soTienDatCoc, String phuongThucThanhToan) {
         this.tourID = tourID;
         this.tenTour = tenTour;
         this.ngayKhoiHanh = ngayKhoiHanh;
@@ -25,6 +24,7 @@ public class Tour {
         this.diaDiem = diaDiem;
         this.soLuongKhachToiDa = soLuongKhachToiDa;
         this.giaTour = giaTour;
+        this.soTienDatCoc = soTienDatCoc;
         this.phuongThucThanhToan = phuongThucThanhToan;
     }
 
@@ -54,6 +54,10 @@ public class Tour {
 
     public double getGiaTour() {
         return giaTour;
+    }
+
+    public double getSoTienDatCoc() {
+        return soTienDatCoc;
     }
 
     public String getPhuongThucThanhToan() {
@@ -88,9 +92,17 @@ public class Tour {
         this.giaTour = giaTour;
     }
 
+    public void setSoTienDatCoc(double soTienDatCoc) {
+        this.soTienDatCoc = soTienDatCoc;
+    }
+
     public void setPhuongThucThanhToan(String phuongThucThanhToan) {
         this.phuongThucThanhToan = phuongThucThanhToan;
     }
+
+    
+
+    
     
     
 }

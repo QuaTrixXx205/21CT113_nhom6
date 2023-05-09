@@ -252,7 +252,7 @@ public class Customer {
                                 
                                     System.out.println("1. Thong tin tai khoan cua toi");
                                     System.out.println("2. Xem cac tour hien co trong khu du lich");
-                                    System.out.println("3. Thong tin cac khach san trong khu du lich");
+                                    System.out.println("3. Xem thong tin cac khach san trong khu du lich");
                                     System.out.println("4. Dat Tour");
                                     System.out.println("5. Lam don khieu nai");
                                     System.out.println("6. Dang xuat va quay lai trang dang nhap/dang ky khach hang");

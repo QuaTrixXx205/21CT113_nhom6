@@ -305,6 +305,150 @@ public class Admin {
             case 4:
                 System.out.println("=================== Tour Du Lich ====================");
                 
+                boolean tourMenu = true;
+                while(tourMenu)
+                {
+                    System.out.println("1, In thong tin cac tour du lich");
+                    System.out.println("2. Them tour moi");
+                    System.out.println("3. Xoa mot tour dua tren tourID");
+                    System.out.println("4. Quay lai");
+                    System.out.print("Lua chon: ");
+                    int tourChoice = sc.nextInt();
+                    
+                    switch(tourChoice)
+                    {
+                        case 1:
+                            String filePath = "src/nhom6/tourList.txt";
+                            try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+                            System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                            System.out.printf("%-10s | %-30s | %-15s | %-15s | %-25s | %-15s | %-15s | %-15s | %-20s\n",
+                        "Tour ID", "Ten Tour", "Ngay Khoi Hanh", "Ngay Ket Thuc", "Dia Diem", "So Luong Toi Da", "Gia Tour",
+                        "So Tien Dat Coc", "Phuong Thuc Thanh Toan");
+                            System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+                            String line;
+                            while ((line = br.readLine()) != null) {
+                            String[] tourInfo = line.split(",");
+                            String tourID = tourInfo[0].trim();
+                            String tenTour = tourInfo[1].trim();
+                            String ngayKhoiHanh = tourInfo[2].trim();
+                            String ngayKetThuc = tourInfo[3].trim();
+                            String diaDiem = tourInfo[4].trim();
+                            String soLuongKhachToiDa = tourInfo[5].trim();
+                            String giaTour = tourInfo[6].trim();
+                            String soTienDatCoc = tourInfo[7].trim();
+                            String phuongThucThanhToan = tourInfo[8].trim();
+
+                            System.out.printf("%-10s | %-30s | %-15s | %-15s | %-25s | %-15s | %-15s | %-15s | %-20s\n",
+                        tourID, tenTour, ngayKhoiHanh, ngayKetThuc, diaDiem, soLuongKhachToiDa, giaTour, soTienDatCoc, phuongThucThanhToan);
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            }
+   
+                            break;
+                        case 2:
+                            sc.nextLine();
+                            String filePath2 = "src/nhom6/tourList.txt";
+                             try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath2, true))) {
+
+
+                                System.out.println("Them mot tour moi");
+                                System.out.print("Nhap Tour ID: ");
+                                String tourID = sc.nextLine();
+
+                                System.out.print("Nhap Ten Tour: ");
+                                String tenTour = sc.nextLine();
+
+                                System.out.print("Nhap Ngay Khoi Hanh: ");
+                                String ngayKhoiHanh = sc.nextLine();
+
+                                System.out.print("Nhap Ngay Ket Thuc: ");
+                                String ngayKetThuc = sc.nextLine();
+
+                                System.out.print("Nhap Dia Diem: ");
+                                String diaDiem = sc.nextLine();
+
+                                System.out.print("Nhap So Luong Khach Toi Da: ");
+                                int soLuongKhachToiDa = sc.nextInt();
+
+                                System.out.print("Nhap Gia Tour: ");
+                                double giaTour = sc.nextDouble();
+
+                                System.out.print("Nhap So Tien Dat Coc: ");
+                                double soTienDatCoc = sc.nextDouble();
+
+                                sc.nextLine(); // Đọc bỏ dòng mới sau khi đọc số
+
+                                System.out.print("Nhap Phuong Thuc Thanh Toan: ");
+                                String phuongThucThanhToan = sc.nextLine();
+
+                                // Ghi thông tin tour mới vào file
+                                String newTour = String.format("%s, %s, %s, %s, %s, %d, %.2f, %.2f, %s",
+                                tourID, tenTour, ngayKhoiHanh, ngayKetThuc, diaDiem, soLuongKhachToiDa, giaTour, soTienDatCoc, phuongThucThanhToan);
+
+                                bw.newLine();
+                                bw.write(newTour);
+
+                                System.out.println("Tour moi da duoc them thanh cong!");
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                }
+                            break;
+                        case 3:
+                            sc.nextLine();
+                            System.out.println("Xoa mot tour dua tren ID");
+                            String filePath3 = "src/nhom6/tourList.txt";
+                            String tourIDToDelete;
+                            System.out.print("Nhap tourID caa tour can xoa: ");
+                            tourIDToDelete = sc.nextLine();
+                            List<String> tourList = new ArrayList<>();
+                            
+                            try (BufferedReader br = new BufferedReader(new FileReader(filePath3))) {
+                            String line;
+                                while ((line = br.readLine()) != null) {
+                                    tourList.add(line);
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        boolean isDeleted = false;
+                        Iterator<String> iterator = tourList.iterator();
+                        while (iterator.hasNext()) {
+                            String tourInfo = iterator.next();
+                            String[] tourData = tourInfo.split(",");
+
+                            if (tourData[0].equals(tourIDToDelete)) {
+                                iterator.remove();
+                                isDeleted = true;
+                                break;
+                            }
+                        }
+
+                        if (isDeleted) {
+                            try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath3))) {
+                                for (String tourInfo : tourList) {
+                                    bw.write(tourInfo);
+                                    bw.newLine();
+                                }
+                            System.out.println("Tour da duoc xoa thanh cong");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                }
+                        } else {
+                            System.out.println("Khong tim thay tour nao co tourID: " + tourIDToDelete);
+                        }
+                            break;
+                        case 4:
+                            tourMenu = false;
+                            adminInterface(true);
+                            
+                        default:
+                            System.out.println("Lua chon khong hop le, vui long nhap lai");
+                    }
+                }
                 break;
             case 5:
                 System.out.println("=============== Khach San =====================");
@@ -473,6 +617,8 @@ public class Admin {
             System.out.println("Loi: Khong tim thay file " + filePath);
         }
     }
+        
+       
         
         public List<Employee> loadEmployeeListFromFile(String filePath) {
         List<Employee> employeeList = new ArrayList<>();
