@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("====== Chuong Trinh Quan Ly Khu Du Lich ===========");
+        System.out.println("======= Chuong Trinh Quan Ly Khu Du Lich ===========");
         System.out.println("Chon vai tro cua ban");
         System.out.println("1. Admin");
         System.out.println("2. Customer");
