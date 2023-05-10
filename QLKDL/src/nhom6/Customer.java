@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.PrintWriter;
 import nhom6.Main;
 
 public class Customer {
@@ -132,6 +133,135 @@ public class Customer {
         
     }
     
+    public void bookTour(String user) {
+    Scanner sc = new Scanner(System.in);
+
+    System.out.print("Nhap ID tour muon dat: ");
+    String tourID = sc.nextLine().trim();
+
+    // Kiểm tra tour có tồn tại trong danh sách tour hay không
+    if (isTourAvailable(tourID)) {
+        // Lấy thông tin tour từ danh sách tour gốc
+        Tour selectedTour = getTourByID(tourID);
+
+        // Nhập thông tin ngày khởi hành và ngày kết thúc
+        System.out.print("Nhap ngay khoi hanh: ");
+        String ngayKhoiHanh = sc.nextLine();
+        System.out.print("Nhap ngay ket thuc: ");
+        String ngayKetThuc = sc.nextLine();
+
+        // Nhập thông tin phương thức thanh toán
+        System.out.print("Nhap phuong thuc thanh toan: ");
+        String phuongThucThanhToan = sc.nextLine();
+
+        // Lưu thông tin tour vào file customerTour.txt
+        saveCustomerTour(user, tourID, ngayKhoiHanh, ngayKetThuc, selectedTour.getDiaDiem(),
+                selectedTour.getSoLuongKhachToiDa(), selectedTour.getGiaTour(), selectedTour.getSoTienDatCoc(),
+                phuongThucThanhToan);
+        System.out.println("Da dat tour thanh cong.");
+    } else {
+        System.out.println("Tour khong ton tai.");
+    }
+}
+    
+    public Tour getTourByID(String tourID) {
+    String filePath = "src/nhom6/tourList.txt";
+
+    try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] tourData = line.split(",");
+            if (tourData[0].trim().equals(tourID.trim())) { // Sử dụng phương thức trim() để loại bỏ khoảng trắng đầu và cuối chuỗi
+                // Tạo đối tượng Tour từ dữ liệu tour trong danh sách
+                return new Tour(tourData[0].trim(), tourData[1].trim(), tourData[2].trim(), tourData[3].trim(), tourData[4].trim(),
+                        Integer.parseInt(tourData[5].trim()), Double.parseDouble(tourData[6].trim()),
+                        Double.parseDouble(tourData[7].trim()), tourData[8].trim());
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return null;
+}
+
+    
+    public boolean isTourAvailable(String tourID) {
+    String filePath = "src/nhom6/tourList.txt";
+
+    try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] tourData = line.split(",");
+            if (tourData[0].equals(tourID)) {
+                return true;
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return false;
+}
+
+    public String getTourNameByID(String tourID) {
+    String filePath = "src/nhom6/tourList.txt";
+
+    try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] tourData = line.split(",");
+            if (tourData[0].equals(tourID)) {
+                return tourData[1];
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return "";
+}
+    
+    public void saveCustomerTour(String user, String tourID, String ngayKhoiHanh, String ngayKetThuc, String diaDiem,
+        int soLuongKhachToiDa, double giaTour, double soTienDatCoc, String phuongThucThanhToan) {
+    String filePath = "src/nhom6/customerTour.txt";
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+        String tenTour = getTourNameByID(tourID);
+        writer.write(user + "," + tourID + "," + tenTour + "," + ngayKhoiHanh + "," + ngayKetThuc + "," + diaDiem + ","
+                + soLuongKhachToiDa + "," + giaTour + "," + soTienDatCoc + "," + phuongThucThanhToan);
+        writer.newLine();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+    
+    
+    
+    public void TourInfo() {
+    String filePath = "src/nhom6/tourList.txt";
+
+    try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        String line;
+
+        // In tiêu đề cột
+        System.out.printf("%-10s | %-30s | %-15s | %-15s | %-25s | %-15s | %-15s | %-15s | %-20s\n",
+                        "Tour ID", "Ten Tour", "Ngay Khoi Hanh", "Ngay Ket Thuc", "Dia Diem", "So Luong Toi Da", "Gia Tour",
+                        "So Tien Dat Coc", "Phuong Thuc Thanh Toan");
+
+        // In dữ liệu từ file
+        while ((line = br.readLine()) != null) {
+            String[] tourData = line.split(",");
+            System.out.printf("%-10s | %-30s | %-15s | %-15s | %-25s | %-15s | %-15s | %-15s | %-20s\n",
+                    tourData[0], tourData[1], tourData[2], tourData[3], tourData[4],
+                    tourData[5], tourData[6], tourData[7], tourData[8]);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+    
     public void HotelInfo() {
     String filePath = "src/nhom6/hotelList.txt";
 
@@ -254,8 +384,9 @@ public class Customer {
                                     System.out.println("2. Xem cac tour hien co trong khu du lich");
                                     System.out.println("3. Xem thong tin cac khach san trong khu du lich");
                                     System.out.println("4. Dat Tour");
-                                    System.out.println("5. Lam don khieu nai");
-                                    System.out.println("6. Dang xuat va quay lai trang dang nhap/dang ky khach hang");
+                                    System.out.println("5. Dat phong khach san");
+                                    System.out.println("6. Lam don khieu nai");
+                                    System.out.println("7. Dang xuat va quay lai trang dang nhap/dang ky khach hang");
                                     System.out.print("Lua chon: ");
                                     int choice3 = sc.nextInt();
                                     sc.nextLine();
@@ -267,18 +398,32 @@ public class Customer {
                                             loggedInCustomer.myProfileInfo();
                                             break;
                                         case 2:
-                                            System.out.println("Tour");
+                                            TourInfo();
                                             break;
                                         case 3:
                                             HotelInfo();
                                             break;
                                         case 4:
-                                            System.out.println("Dat Tour");
+                                            if (isUserExist) { 
+                                                String user = loggedInCustomer.username;
+
+                                                // Hiển thị danh sách tour hiện có
+                                                System.out.println("Danh sach cac tour hien co trong khu du lich");
+                                                TourInfo();
+
+                                                // Gọi phương thức để đặt tour
+                                                bookTour(user);
+                                                } else {
+                                                    System.out.println("Ban can dang nhap truoc khi dat tour.");
+                                            }
                                             break;
                                         case 5:
-                                            
+                                            System.out.println("Dat khach san");
                                             break;
                                         case 6:
+                                            System.out.println("Lam don khieu nai");
+                                            break;
+                                        case 7:
                                             isUserExist = false;
                                             customerInterface();
                                             break;
@@ -337,10 +482,12 @@ public class Customer {
                                     Customer loggedInCustomer = new Customer(username, userPassword, fullName, sdt, email, diaChiKhach, ngaySinh, gioiTinh, CCCD);
                                 
                                     System.out.println("1. Thong tin tai khoan cua toi");
-                                    System.out.println("2. Dat Tour");
-                                    System.out.println("3. Thong tin cac khach san trong khu du lich");
-                                    System.out.println("4. Lam don khieu nai");
-                                    System.out.println("5. Dang xuat va quay lai trang dang nhap/dang ky khach hang");
+                                    System.out.println("2. Xem cac tour hien co trong khu du lich");
+                                    System.out.println("3. Xem thong tin cac khach san trong khu du lich");
+                                    System.out.println("4. Dat Tour");
+                                    System.out.println("5. Dat phong khach san");
+                                    System.out.println("6. Lam don khieu nai");
+                                    System.out.println("7. Dang xuat va quay lai trang dang nhap/dang ky khach hang");
                                     System.out.print("Lua chon: ");
                                     int choice3 = sc.nextInt();
                                     sc.nextLine();
@@ -352,15 +499,21 @@ public class Customer {
                                             loggedInCustomer.myProfileInfo();
                                             break;
                                         case 2:
-                                            System.out.println("Tour");
+                                            TourInfo();
                                             break;
                                         case 3:
                                             HotelInfo();
                                             break;
                                         case 4:
-                                            System.out.println("Khieu nai");
+                                            System.out.println("Dat Tour");
                                             break;
                                         case 5:
+                                            
+                                            break;
+                                        case 6:
+                                            
+                                            break;
+                                        case 7:
                                             isUserExist = false;
                                             customerInterface();
                                             break;

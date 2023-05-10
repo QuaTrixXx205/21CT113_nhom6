@@ -1,0 +1,2 @@
+QuaTrixXx,T001, Hanh trinh bien Dong,2023-05-20,2023-05-25,Bien Dong,50,1000.0,400.0,Tien mat
+Tumulu,T001, Hanh trinh bien Dong,2023-04-12,2023-04-22,Bien Dong,50,1000.0,400.0,Chuyen khoan
