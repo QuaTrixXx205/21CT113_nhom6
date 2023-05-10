@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.PrintWriter;
+import java.io.RandomAccessFile;
 import nhom6.Main;
 
 public class Customer {
@@ -127,12 +128,7 @@ public class Customer {
     System.out.println("So CCCD/CMND: " + CCCD);
     System.out.println("=============================================================");
     }
-    
-    public void lichSuDatTour()
-    {
-        
-    }
-    
+       
     public void bookTour(String user) {
     Scanner sc = new Scanner(System.in);
 
@@ -236,8 +232,6 @@ public class Customer {
     }
 }
     
-    
-    
     public void TourInfo() {
     String filePath = "src/nhom6/tourList.txt";
 
@@ -260,8 +254,7 @@ public class Customer {
         e.printStackTrace();
     }
 }
-
-    
+ 
     public void HotelInfo() {
     String filePath = "src/nhom6/hotelList.txt";
 
@@ -280,7 +273,85 @@ public class Customer {
         e.printStackTrace();
     }
 }
+    public void lichSuDatTour(String user) {
+    String filePath = "src/nhom6/customerTour.txt";
 
+    try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        String line;
+        boolean foundUser = false;
+
+        System.out.println("====================================================================================================================================================================================");
+        System.out.printf("%-12s %-12s %-30s %-20s %-20s %-18s %-15s %-15s %-15s %-15s\n",
+                "Username", "Tour ID", "Hanh trinh", "Ngay khoi hanh",
+                "Ngay ket thuc", "Dia diem", "SL khach", "Gia tour", "Tien coc", "Phuong thuc");
+        System.out.println("====================================================================================================================================================================================");
+
+        while ((line = br.readLine()) != null) {
+            String[] tourData = line.split(",");
+            String username = tourData[0];
+
+            if (username.equals(user) && tourData.length >= 10) {
+                // In ra thông tin tour đã đặt của người dùng
+                System.out.printf("%-12s %-12s %-30s %-20s %-20s %-18s %-15s %-15s %-15s %-15s\n",
+                    tourData[0], tourData[1], tourData[2], tourData[3], tourData[4],
+                    tourData[5], tourData[6], tourData[7], tourData[8], tourData[9]);
+
+                foundUser = true;
+            }
+        }
+
+        if (!foundUser) {
+            System.out.println("Khong co lich su dat tour cho nguoi dung: " + user);
+        }
+
+        System.out.println("====================================================================================================================================================================================");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+    public boolean cancelTour(String user, String tourID) {
+    String filePath = "src/nhom6/customerTour.txt";
+    File file = new File(filePath);
+    File tempFile = new File("src/nhom6/customerTourTemp.txt");
+
+    boolean isCanceled = false;
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(file));
+         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] tourData = line.split(",");
+
+            if (tourData.length >= 2 && tourData[0].equals(user) && tourData[1].equals(tourID)) {
+                // Bỏ qua tour cần hủy
+                isCanceled = true;
+                continue;
+            }
+
+            writer.write(line);
+            writer.newLine();
+        }
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    // Xóa file gốc
+    file.delete();
+
+    // Đổi tên file tạm thành tên file gốc
+    tempFile.renameTo(file);
+
+    return isCanceled;
+}
+
+
+    public void khachSanDaDat()
+    {
+        
+    }
     
     public void KhieuNai()
     {
@@ -386,7 +457,11 @@ public class Customer {
                                     System.out.println("4. Dat Tour");
                                     System.out.println("5. Dat phong khach san");
                                     System.out.println("6. Lam don khieu nai");
-                                    System.out.println("7. Dang xuat va quay lai trang dang nhap/dang ky khach hang");
+                                    System.out.println("7. Lich su dat tour");
+                                    System.out.println("8. Khach san da dat");
+                                    System.out.println("9. Huy tour");
+                                    System.out.println("10. Huy khach san da dat");
+                                    System.out.println("11. Dang xuat va quay lai trang dang nhap/dang ky khach hang");
                                     System.out.print("Lua chon: ");
                                     int choice3 = sc.nextInt();
                                     sc.nextLine();
@@ -424,6 +499,43 @@ public class Customer {
                                             System.out.println("Lam don khieu nai");
                                             break;
                                         case 7:
+                                            System.out.println("Lich su dat tour");
+                                            String user = loggedInCustomer.username;
+                                            
+                                            lichSuDatTour(user);
+                                            break;
+                                        case 8:
+                                            System.out.println("Khach san da dat");
+                                            break;
+                                        case 9:
+                                            if (isUserExist) {
+                                                System.out.println("Huy Tour");
+                                                user = loggedInCustomer.username;
+
+                                                // Hiển thị danh sách tour đã đặt của người dùng
+                                                System.out.println("Danh sach tour da dat cua ban:");
+                                                lichSuDatTour(user);
+
+                                                // Yêu cầu người dùng nhập ID tour muốn hủy
+                                                System.out.print("Nhap ID tour muon huy: ");
+                                                String tourID = sc.nextLine();
+
+                                                // Xóa tour khỏi danh sách tour đã đặt
+                                                boolean isTourCanceled = cancelTour(user, tourID);
+
+                                                if (isTourCanceled) {
+                                                    System.out.println("Huy tour thanh cong.");
+                                                } else {
+                                                    System.out.println("Khong tim thay tour hoac khong the huy tour.");
+                                                }
+                                            } else {
+                                                System.out.println("Ban can dang nhap truoc khi huy tour.");
+                                            }
+                                            break;
+                                        case 10:
+                                            System.out.println("Huy khach san");
+                                            break;
+                                        case 11:
                                             isUserExist = false;
                                             customerInterface();
                                             break;
