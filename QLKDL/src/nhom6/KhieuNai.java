@@ -3,6 +3,7 @@ package nhom6;
 
 
 public class KhieuNai {
+    private String khieuNaiID;
     private String hoTenKhach;
     private String diaChiKhach;
     private String tourID;
@@ -11,11 +12,16 @@ public class KhieuNai {
     public KhieuNai() {
     }
 
-    public KhieuNai(String hoTenKhach, String diaChiKhach, String tourID, String lyDoKN) {
+    public KhieuNai(String khieuNaiID, String hoTenKhach, String diaChiKhach, String tourID, String lyDoKN) {
+        this.khieuNaiID = khieuNaiID;
         this.hoTenKhach = hoTenKhach;
         this.diaChiKhach = diaChiKhach;
         this.tourID = tourID;
         this.lyDoKN = lyDoKN;
+    }
+
+    public String getKhieuNaiID() {
+        return khieuNaiID;
     }
 
     public String getHoTenKhach() {
@@ -34,6 +40,10 @@ public class KhieuNai {
         return lyDoKN;
     }
 
+    public void setKhieuNaiID(String khieuNaiID) {
+        this.khieuNaiID = khieuNaiID;
+    }
+
     public void setHoTenKhach(String hoTenKhach) {
         this.hoTenKhach = hoTenKhach;
     }
@@ -49,6 +59,8 @@ public class KhieuNai {
     public void setLyDoKN(String lyDoKN) {
         this.lyDoKN = lyDoKN;
     }
+
+    
     
     
 }

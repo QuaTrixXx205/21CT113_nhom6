@@ -51,35 +51,6 @@ public class Admin {
         return new Admin(username, password);
     }
 
-    // Phương thức để in thông tin tour
-    public void printTourInfo() {
-        // Code để in thông tin tour ở đây
-    }
-
-    // Phương thức để in thông tin khách hàng
-    public void printCustomerInfo() {
-        // Code để in thông tin khách hàng ở đây
-    }
-
-    // Phương thức để in doanh thu
-    public void printDoanhThu() {
-        // Code để in doanh thu ở đây
-    }
-
-    // Phương thức để in danh sách khách sạn
-    public void printHotelList() {
-        // Code để in danh sách khách sạn ở đây
-    }
-
-    // Phương thức để in thông tin nhân viên
-    public void printEmployee() {
-        // Code để in thông tin nhân viên ở đây
-    }
-
-    // Phương thức để in thông tin khiếu nại
-    public void printKhieuNai() {
-        // Code để in thông tin khiếu nại ở đây
-    }
     
         public void adminInterface(boolean loggedIn) {
         List<Employee> employeeList = loadEmployeeListFromFile("src/nhom6/EmployeeList.txt");   
@@ -593,6 +564,68 @@ public class Admin {
                 break;
             case 6:
                 System.out.println("============= Khieu Nai ======================");
+                boolean khieuNaiMenu = true;
+                
+                while(khieuNaiMenu)
+                {
+                    System.out.println("1. In cac khieu nai tu khach hang");
+                    System.out.println("2. Xoa khieu nai khach hang (username)");
+                    System.out.println("3. Quay lai");
+                    System.out.print("Lua chon: ");
+                    int knChoice = sc.nextInt();
+                    
+                    switch(knChoice)
+                    {
+                        case 1:
+                            String filePath = "src/nhom6/KhieuNai.txt";
+                            
+                            try {
+                                // Mở file để đọc dữ liệu
+                                File file = new File(filePath);
+                                FileReader fileReader = new FileReader(file);
+                                BufferedReader bufferedReader = new BufferedReader(fileReader);
+        
+                                System.out.println("Danh sach khieu nai:");
+                                System.out.println("------------------------------------------");
+                                System.out.printf("%-20s %-20s %-20s %-20s %-20s%n",
+                                "KhieuNaiID", "Ho Ten Khach", "Dia Chi Khach", "Tour ID", "Ly Do Khieu Nai");
+                                System.out.println("------------------------------------------");
+                                
+                                String line;
+                                while ((line = bufferedReader.readLine()) != null) {
+                                    String[] complaintData = line.split(",");
+
+                                    String khieuNaiID = complaintData[0];
+                                    String hoTenKhach = complaintData[1];
+                                    String diaChiKhach = complaintData[2];
+                                    String tourID = complaintData[3];
+                                    String lyDoKN = complaintData[4];
+
+                                    KhieuNai complaint = new KhieuNai(khieuNaiID, hoTenKhach, diaChiKhach, tourID, lyDoKN);
+
+                                    System.out.printf("%-20s %-20s %-20s %-20s %-20s%n",
+                                complaint.getKhieuNaiID(), complaint.getHoTenKhach(), complaint.getDiaChiKhach(),
+                                complaint.getTourID(), complaint.getLyDoKN());
+                                    }
+        
+                                // Đóng file sau khi hoàn thành việc đọc dữ liệu
+                                    bufferedReader.close();
+                                } catch (IOException e) {
+                                    System.out.println("Loi khi doc file!");
+                                    e.printStackTrace();
+                                }
+                            break;
+                        case 2:
+                            
+                            break;
+                        case 3:
+                            khieuNaiMenu = false;
+                            adminInterface(true);
+                            break;
+                        default:
+                            System.out.println("Lua chon khong hop le, vui long chon lai");
+                    }
+                }
                 
                 break;
             case 7:
