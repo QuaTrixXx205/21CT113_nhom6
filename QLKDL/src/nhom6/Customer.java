@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.PrintWriter;
+import java.util.Random;
 import nhom6.Main;
 
 public class Customer {
@@ -513,6 +514,21 @@ public class Customer {
 
     return isCanceled;
 }
+    
+    
+    // Phương thức để tạo ID khiếu nại 
+private String generateRandomCode(int length) {
+    String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    Random random = new Random();
+    StringBuilder code = new StringBuilder();
+
+    for (int i = 0; i < length; i++) {
+        int index = random.nextInt(characters.length());
+        code.append(characters.charAt(index));
+    }
+
+    return code.toString();
+}
 
   
     public void customerInterface()
@@ -684,8 +700,8 @@ public class Customer {
                                                 fullName = loggedInCustomer.fullName;
                                                 diaChiKhach = loggedInCustomer.diaChiKhach;
                                                 
-                                                System.out.print("Nhap ID khieu nai: ");
-                                                String khieuNaiID = sc.nextLine();
+                                                // Tạo một ID duy nhất tự động
+                                                String khieuNaiID = generateRandomCode(3);
 
                                                 System.out.print("Nhap ma tour:");
                                                 String tourID = sc.nextLine().trim();
@@ -919,8 +935,8 @@ public class Customer {
                                                 fullName = loggedInCustomer.fullName;
                                                 diaChiKhach = loggedInCustomer.diaChiKhach;
                                                 
-                                                System.out.print("Nhap ID khieu nai: ");
-                                                String khieuNaiID = sc.nextLine();
+                                                // Tạo một ID duy nhất tự động
+                                                String khieuNaiID = generateRandomCode(3);
 
                                                 System.out.print("Nhap ma tour:");
                                                 String tourID = sc.nextLine().trim();

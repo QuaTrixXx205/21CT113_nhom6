@@ -1,2 +1,2 @@
-ABC,QuaTrixXx,Nguyen Hao Quang,Bien Hoa,T002,Dich vu khong tot
-XYA,Tumulu,Nguyen Duc Loc,Trang Bom,T002,dich vu toi te va nhan vien ung xu khong hay
+DMJ,QuaTrixXx,Nguyen Hao Quang,Bien Hoa,T002,Dich vu khong tot
+ABJ,QuaTrixXx,Nguyen Hao Quang,Bien Hoa,T001,Nhan vien thai do

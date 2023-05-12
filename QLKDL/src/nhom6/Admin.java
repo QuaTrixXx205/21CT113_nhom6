@@ -569,7 +569,7 @@ public class Admin {
                 while(khieuNaiMenu)
                 {
                     System.out.println("1. In cac khieu nai tu khach hang");
-                    System.out.println("2. Xoa khieu nai khach hang (username)");
+                    System.out.println("2. Xoa khieu nai khach hang (khieuNaiID)");
                     System.out.println("3. Quay lai");
                     System.out.print("Lua chon: ");
                     int knChoice = sc.nextInt();
@@ -596,10 +596,10 @@ public class Admin {
                                     String[] complaintData = line.split(",");
 
                                     String khieuNaiID = complaintData[0];
-                                    String hoTenKhach = complaintData[1];
-                                    String diaChiKhach = complaintData[2];
-                                    String tourID = complaintData[3];
-                                    String lyDoKN = complaintData[4];
+                                    String hoTenKhach = complaintData[2];
+                                    String diaChiKhach = complaintData[3];
+                                    String tourID = complaintData[4];
+                                    String lyDoKN = complaintData[5];
 
                                     KhieuNai complaint = new KhieuNai(khieuNaiID, hoTenKhach, diaChiKhach, tourID, lyDoKN);
 
@@ -616,8 +616,55 @@ public class Admin {
                                 }
                             break;
                         case 2:
-                            
-                            break;
+                            sc.nextLine();
+                            System.out.println("Xoa khieu nai");
+                            try {
+                                // Mở file để đọc dữ liệu
+                                File inputFile = new File("src/nhom6/KhieuNai.txt");
+                                File tempFile = new File("src/nhom6/tempKhieuNai.txt");
+                                FileReader fileReader = new FileReader(inputFile);
+                                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+                                // Yêu cầu Admin nhập ID của khiếu nại cần xóa
+                                System.out.print("Nhap ID khieu nai can xoa: ");
+                                String id = sc.nextLine();
+
+                                String line;
+                                boolean found = false;
+                                while ((line = bufferedReader.readLine()) != null) {
+                                    String[] complaintData = line.split(",");
+
+                                    // Kiểm tra nếu ID của khiếu nại trùng khớp, thì bỏ qua dòng này
+                                    if (complaintData[0].equals(id)) {
+                                        found = true;
+                                        continue;
+                                    }
+
+                                // Ghi lại các dòng khiếu nại không cần xóa vào file tạm
+                                writer.write(line + "\n");
+                                }
+
+                                // Đóng file sau khi hoàn thành việc đọc và ghi dữ liệu
+                                bufferedReader.close();
+                                writer.close();
+
+                                if (found) {
+                                    // Xóa file gốc
+                                    inputFile.delete();
+
+                                    // Đổi tên file tạm thành tên file gốc
+                                    tempFile.renameTo(inputFile);
+
+                                    System.out.println("Xoa khieu nai thanh cong!");
+                                } else {
+                                    System.out.println("Khong tim thay khieu nai co ID: " + id);
+                                    }
+                                } catch (IOException e) {
+                                    System.out.println("Loi khi doc hoac ghi ghi file!");
+                                    e.printStackTrace();
+                                }
+                                break;
                         case 3:
                             khieuNaiMenu = false;
                             adminInterface(true);
