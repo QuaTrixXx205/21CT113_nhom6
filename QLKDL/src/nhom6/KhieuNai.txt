@@ -1,2 +1,3 @@
 DMJ,QuaTrixXx,Nguyen Hao Quang,Bien Hoa,T002,Dich vu khong tot
 ABJ,QuaTrixXx,Nguyen Hao Quang,Bien Hoa,T001,Nhan vien thai do
+7PZ,QuaTrixXx,Nguyen Hao Quang,Bien Hoa,T002,Dich vu toi te

@@ -50,6 +50,65 @@ public class Admin {
     public Admin createAdminAccount(String username, String password) {
         return new Admin(username, password);
     }
+    
+    private static double calculateTourRevenue(String customerTourFile) {
+    double totalRevenue = 0.0;
+
+    try {
+        FileReader fileReader = new FileReader(customerTourFile);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            String[] tourData = line.split(",");
+
+            double giaTour = Double.parseDouble(tourData[7].trim());
+            int soLuongKhach = Integer.parseInt(tourData[6].trim());
+
+            // Tính toán doanh thu từ đặt tour
+            double tourRevenue = giaTour * soLuongKhach;
+            totalRevenue += tourRevenue;
+        }
+
+        bufferedReader.close();
+    } catch (IOException e) {
+        System.out.println("Lỗi khi đọc file danh sách tour!");
+        e.printStackTrace();
+    }
+
+    return totalRevenue;
+}
+
+private static double calculateHotelRevenue(String customerHotelFile) {
+    double totalRevenue = 0.0;
+
+    try {
+        FileReader fileReader = new FileReader(customerHotelFile);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            String[] hotelData = line.split(",");
+
+            double giaPhong = Double.parseDouble(hotelData[5].trim());
+            int soPhong = Integer.parseInt(hotelData[4].trim());
+
+            // Tính toán doanh thu từ đặt khách sạn
+            double hotelRevenue = giaPhong * soPhong;
+            totalRevenue += hotelRevenue;
+        }
+
+        bufferedReader.close();
+    } catch (IOException e) {
+        System.out.println("Lỗi khi đọc file danh sách khách sạn!");
+        e.printStackTrace();
+    }
+
+    return totalRevenue;
+}
+
+
+
 
     
         public void adminInterface(boolean loggedIn) {
@@ -271,7 +330,14 @@ public class Admin {
                 break;
             case 3:
                 System.out.println("=============== Doanh Thu =====================");
-                
+                    double tourRevenue = calculateTourRevenue("src/nhom6/customerTour.txt");
+                    double hotelRevenue = calculateHotelRevenue("src/nhom6/customerHotel.txt");
+        
+                    double totalRevenue = tourRevenue + hotelRevenue;
+        
+                    System.out.println("Doanh thu tu dat tour: " + tourRevenue);
+                    System.out.println("Doanh thu tu dat khach san: " + hotelRevenue);
+                    System.out.println("Tong doanh thu: " + totalRevenue);
                 break;
             case 4:
                 System.out.println("=================== Tour Du Lich ====================");

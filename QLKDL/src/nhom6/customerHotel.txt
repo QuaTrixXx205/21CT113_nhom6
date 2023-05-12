@@ -1,1 +1,2 @@
 QuaTrixXx,KSH003,Golden Palace,789 Golden Street,5,150,120.0,Spa,Phone: 4567891230
+Tumulu,KSH004,Silver Sands,321 Silver Street,4,100,70.0,Restaurant,Phone: 6543217890

@@ -3,27 +3,25 @@ package nhom6;
 
 
 public class DoanhThu {
-    private String tourID;
+    private String doanhThuID;
     private String ngayThangDoanhThu;
     private double soTien;
     private String phuongThucThanhToan;
     private String nguoiThanhToan;
-    private String nhanVienBanHang;
 
     public DoanhThu() {
     }
 
-    public DoanhThu(String tourID, String ngayThangDoanhThu, double soTien, String phuongThucThanhToan, String nguoiThanhToan, String nhanVienBanHang) {
-        this.tourID = tourID;
+    public DoanhThu(String doanhThuID, String ngayThangDoanhThu, double soTien, String phuongThucThanhToan, String nguoiThanhToan) {
+        this.doanhThuID = doanhThuID;
         this.ngayThangDoanhThu = ngayThangDoanhThu;
         this.soTien = soTien;
         this.phuongThucThanhToan = phuongThucThanhToan;
         this.nguoiThanhToan = nguoiThanhToan;
-        this.nhanVienBanHang = nhanVienBanHang;
     }
 
-    public String getTourID() {
-        return tourID;
+    public String getDoanhThuID() {
+        return doanhThuID;
     }
 
     public String getNgayThangDoanhThu() {
@@ -42,12 +40,8 @@ public class DoanhThu {
         return nguoiThanhToan;
     }
 
-    public String getNhanVienBanHang() {
-        return nhanVienBanHang;
-    }
-
-    public void setTourID(String tourID) {
-        this.tourID = tourID;
+    public void setDoanhThuID(String doanhThuID) {
+        this.doanhThuID = doanhThuID;
     }
 
     public void setNgayThangDoanhThu(String ngayThangDoanhThu) {
@@ -66,9 +60,9 @@ public class DoanhThu {
         this.nguoiThanhToan = nguoiThanhToan;
     }
 
-    public void setNhanVienBanHang(String nhanVienBanHang) {
-        this.nhanVienBanHang = nhanVienBanHang;
-    }
+   
+
+    
     
     
 }
