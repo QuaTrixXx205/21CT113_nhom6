@@ -1,3 +1,3 @@
 QuaTrixXx,Quang123,Nguyen Hao Quang,02984345,quang@gmail.com,Bien Hoa,20/5/2003,Nam,348454856
 TBHKenji,Toan123,Nguyen Ngo Thanh Toan,234334545,tbh@gmail.com,Buu Long,22/02/2003,Nam,038348754
-Tumulu,Loc789,Nguyen Duc Loc,223434335,loc@gmail.com,Trang Bom,22/05/2002,Nam,0684834724
+Tumulu,Loc789,Nguyen Duc Loc,0684736234,locLu@gmail.com,Trang Bom,22/05/2002,Nam,06857374856

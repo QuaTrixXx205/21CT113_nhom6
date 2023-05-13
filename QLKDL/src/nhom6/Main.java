@@ -5,12 +5,12 @@ import nhom6.Admin;
 import nhom6.Customer;
 
 public class Main {
+    
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
+        Scanner sc = new Scanner(System.in); 
         System.out.println("======= Chuong Trinh Quan Ly Khu Du Lich ===========");
         System.out.println("Chon vai tro cua ban");
-        System.out.println("1. Admin");
+        System.out.println("1. Admin" );
         System.out.println("2. Customer");
         System.out.println("3. Thoat Chuong Trinh");
         System.out.print("Ban chon: ");

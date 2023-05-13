@@ -732,7 +732,6 @@ private String generateRandomCode(int length) {
                                             }                                     
                                             break;
                                         case 7:
-                                            System.out.println("Lich su dat tour");
                                             if(isUserExist)
                                             {
                                                 String user = loggedInCustomer.username;
@@ -743,7 +742,6 @@ private String generateRandomCode(int length) {
                                             }
                                             break;
                                         case 8:
-                                            System.out.println("Khach san da dat");
                                             if(isUserExist)
                                             {
                                                 String user = loggedInCustomer.username;
@@ -967,7 +965,6 @@ private String generateRandomCode(int length) {
                                             }                                     
                                             break;
                                         case 7:
-                                            System.out.println("Lich su dat tour");
                                             if(isUserExist)
                                             {
                                                 String user = loggedInCustomer.username;
@@ -978,7 +975,6 @@ private String generateRandomCode(int length) {
                                             }
                                             break;
                                         case 8:
-                                            System.out.println("Khach san da dat");
                                             if(isUserExist)
                                             {
                                                 String user = loggedInCustomer.username;

@@ -51,6 +51,7 @@ public class Admin {
         return new Admin(username, password);
     }
     
+    //Tính doanh thu của Tour mà khách hàng đã đặt
     private static double calculateTourRevenue(String customerTourFile) {
     double totalRevenue = 0.0;
 
@@ -79,6 +80,7 @@ public class Admin {
     return totalRevenue;
 }
 
+    //Tính doanh thu khách sạn mà khách hàng đã đặt
 private static double calculateHotelRevenue(String customerHotelFile) {
     double totalRevenue = 0.0;
 
@@ -110,7 +112,7 @@ private static double calculateHotelRevenue(String customerHotelFile) {
 
 
 
-    
+        //Giao diện của Admin
         public void adminInterface(boolean loggedIn) {
         List<Employee> employeeList = loadEmployeeListFromFile("src/nhom6/EmployeeList.txt");   
         boolean continueLoop = true;
@@ -132,6 +134,7 @@ private static double calculateHotelRevenue(String customerHotelFile) {
                     System.out.println("Sai ten dang nhap hoac mat khau, vui long nhap lai!");
                 }
             }
+            //Admin menu
             System.out.println("=====================================");
             System.out.println("1. Nhan Vien");
             System.out.println("2. Khach Hang");
@@ -142,6 +145,8 @@ private static double calculateHotelRevenue(String customerHotelFile) {
             System.out.println("7. Dang Xuat Va Quay Lai Trang Chu");
             System.out.print("Lua chon: ");
             int choice = sc.nextInt();
+            
+            //Lấy thông tin nhân viên từ file EmployeeList.txt
             employeeList = loadEmployeeListFromFile("src/nhom6/EmployeeList.txt");
 
             
