@@ -34,7 +34,7 @@ public class Main {
                 customer.customerInterface();
                 break;
             case 3:
-                System.out.println("Cam on vi da su dung chuong trinh cua chung toi!");
+                System.out.println("Cam on vi da su dung chuong trinh cua chung toi");
                 System.exit(0);
             default:
                 break;
