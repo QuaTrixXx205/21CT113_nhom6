@@ -474,13 +474,6 @@ public class Customer {
         String line;
         boolean isUserFound = false;
 
-        System.out.println("Cac khach san da dat cua " + user);
-        System.out.println("------------------------------------------");
-        System.out.printf("%-12s %-20s %-20s %-15s %-20s %-15s %-25s %-20s%n",
-                "ID", "Khach san", "Dia chi", "So sao", "So luong phong", "Gia phong",
-                "Tien nghi khach san", "Thong tin lien he");
-        System.out.println("------------------------------------------");
-
         while ((line = reader.readLine()) != null) {
             String[] hotelData = line.split(",");
 
@@ -492,10 +485,6 @@ public class Customer {
                     continue;
                 }
 
-                // In thông tin tour lên màn hình
-                System.out.printf("%-12s %-20s %-20s %-15s %-20s %-15s %-25s %-20s%n",
-                        hotelData[1], hotelData[2], hotelData[3], hotelData[4],
-                        hotelData[5], hotelData[6], hotelData[7], hotelData[8]);
             }
 
             pw.println(line);
@@ -781,7 +770,7 @@ private String generateRandomCode(int length) {
                                                 String user = loggedInCustomer.username;
 
                                                 // Hiển thị các tour đã đặt của người dùng
-                                                cancelHotel(user, null);
+                                                 printBookedHotels(user);
 
                                                 // Hỏi người dùng nhập ID của tour muốn hủy
                                                 System.out.print("Nhap ID khach san muon huy: ");

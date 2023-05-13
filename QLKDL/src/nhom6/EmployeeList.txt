@@ -2,4 +2,4 @@ NV001;Nguyen Van Tien;Manager;123 Main St, City;123456789;tienvan@gmail.com;01/0
 NV002;Tran Thi Thu Ha;Staff;456 Park Ave, Town;987654321;hathu20@gmail.com;02/02/1995
 NV003;Nguyen Minh Duc;Staff;156 North Carolina, Town;753357456;DucNguyen@gmail.com;02/10/1992
 NV004;Ho Hoang Phat;Staff;23 Jump Street, City;852264795;phathoang@gmail.com;12/12/1995
-NV005;Nguyen Duc Thanh;Staff;23 Trang Dai, Bien Hoa;8472722;thanh@gmail.com;12/23/1997
+NV006;Nguyen Van Hoang;Cashier;567 Bien Hoa;0687235633;hoangcongchua@gmail.com;12/08/2003

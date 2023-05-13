@@ -380,9 +380,12 @@ private static double calculateHotelRevenue(String customerHotelFile) {
                             String giaTour = tourInfo[6].trim();
                             String soTienDatCoc = tourInfo[7].trim();
                             String phuongThucThanhToan = tourInfo[8].trim();
-
-                            System.out.printf("%-10s | %-30s | %-15s | %-15s | %-25s | %-15s | %-15s | %-15s | %-20s\n",
-                        tourID, tenTour, ngayKhoiHanh, ngayKetThuc, diaDiem, soLuongKhachToiDa, giaTour, soTienDatCoc, phuongThucThanhToan);
+                            
+                            
+                                 System.out.printf("%-10s | %-30s | %-15s | %-15s | %-25s | %-15s | %-15s | %-15s | %-20s\n",
+                             tourID, tenTour, ngayKhoiHanh, ngayKetThuc, diaDiem, soLuongKhachToiDa, giaTour, soTienDatCoc, phuongThucThanhToan);
+                            
+                           
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -397,19 +400,19 @@ private static double calculateHotelRevenue(String customerHotelFile) {
 
                                 System.out.println("Them mot tour moi");
                                 System.out.print("Nhap Tour ID: ");
-                                String tourID = sc.nextLine();
+                                String tourID = sc.nextLine().trim();
 
                                 System.out.print("Nhap Ten Tour: ");
-                                String tenTour = sc.nextLine();
+                                String tenTour = sc.nextLine().trim();
 
                                 System.out.print("Nhap Ngay Khoi Hanh: ");
-                                String ngayKhoiHanh = sc.nextLine();
+                                String ngayKhoiHanh = sc.nextLine().trim();
 
                                 System.out.print("Nhap Ngay Ket Thuc: ");
-                                String ngayKetThuc = sc.nextLine();
+                                String ngayKetThuc = sc.nextLine().trim();
 
                                 System.out.print("Nhap Dia Diem: ");
-                                String diaDiem = sc.nextLine();
+                                String diaDiem = sc.nextLine().trim();
 
                                 System.out.print("Nhap So Luong Khach Toi Da: ");
                                 int soLuongKhachToiDa = sc.nextInt();
@@ -423,14 +426,15 @@ private static double calculateHotelRevenue(String customerHotelFile) {
                                 sc.nextLine(); // Đọc bỏ dòng mới sau khi đọc số
 
                                 System.out.print("Nhap Phuong Thuc Thanh Toan: ");
-                                String phuongThucThanhToan = sc.nextLine();
+                                String phuongThucThanhToan = sc.nextLine().trim();
 
                                 // Ghi thông tin tour mới vào file
                                 String newTour = String.format("%s, %s, %s, %s, %s, %d, %.2f, %.2f, %s",
                                 tourID, tenTour, ngayKhoiHanh, ngayKetThuc, diaDiem, soLuongKhachToiDa, giaTour, soTienDatCoc, phuongThucThanhToan);
 
-                                bw.newLine();
                                 bw.write(newTour);
+                                bw.newLine();
+
 
                                 System.out.println("Tour moi da duoc them thanh cong!");
 
@@ -472,16 +476,17 @@ private static double calculateHotelRevenue(String customerHotelFile) {
                         if (isDeleted) {
                             try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath3))) {
                                 for (String tourInfo : tourList) {
-                                    bw.write(tourInfo);
-                                    bw.newLine();
+                                bw.write(tourInfo);
+                                bw.newLine();
                                 }
-                            System.out.println("Tour da duoc xoa thanh cong");
+                                System.out.println("Tour da duoc xoa thanh cong!");
                             } catch (IOException e) {
                                 e.printStackTrace();
-                                }
+                            }
                         } else {
                             System.out.println("Khong tim thay tour nao co tourID: " + tourIDToDelete);
                         }
+
                             break;
                         case 4:
                             tourMenu = false;
@@ -550,11 +555,11 @@ private static double calculateHotelRevenue(String customerHotelFile) {
                                 System.out.println("Them thong tin khach san moi");
                                 
                                 System.out.print("Ma KS: ");
-                                String maKS = sc.nextLine();
+                                String maKS = sc.nextLine().trim();
                                 System.out.print("Ten khach san: ");
-                                String tenKhachSan = sc.nextLine();
+                                String tenKhachSan = sc.nextLine().trim();
                                 System.out.print("Dia chi khach san: ");
-                                String diaChiKhachSan  = sc.nextLine();
+                                String diaChiKhachSan  = sc.nextLine().trim();
                                 System.out.print("So sao: ");
                                 int soSao  = sc.nextInt();
                                 System.out.print("So luong phong: ");
@@ -563,9 +568,9 @@ private static double calculateHotelRevenue(String customerHotelFile) {
                                 double giaPhong  = sc.nextDouble();
                                 sc.nextLine();
                                 System.out.print("Tien nghi khach san: ");
-                                String tienNghiKhachSan  = sc.nextLine();
+                                String tienNghiKhachSan  = sc.nextLine().trim();
                                 System.out.print("Thong tin lien he: ");
-                                String thongTinLienHe  = sc.nextLine();
+                                String thongTinLienHe  = sc.nextLine().trim();
                                 
                                 // Ghi thông tin khách sạn mới vào file
                                 printWriter.println(maKS + "," + tenKhachSan + "," + diaChiKhachSan + "," + soSao + ","

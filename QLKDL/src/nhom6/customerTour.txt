@@ -2,3 +2,4 @@ Tumulu,T001, Hanh trinh bien Dong,2023-04-12,2023-04-22,Bien Dong,50,1000.0,400.
 QuaTrixXx,T005, Du lich bien Nha Trang,2023-05-20,2023-05-25,Nha Trang,25,1200.0,480.0,Tien mat
 QuaTrixXx,T004, Kham pha di san van hoa,2023-08-22,2023-08-25,Hue - Hoi An,40,1800.0,720.0,Chuyen khoan
 Tumulu,T003, Du lich camp,2023-06-12,2023-06-15,Rung nui Phong Nha,30,1500.0,600.0,Tien mat
+QuaTrixXx,T004, Kham pha di san van hoa,2023-05-20,2023-05-22,Hue - Hoi An,40,1800.0,720.0,Tien mat
