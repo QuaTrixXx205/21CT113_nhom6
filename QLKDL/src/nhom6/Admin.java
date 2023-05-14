@@ -46,7 +46,7 @@ public class Admin {
     
     
     
-    // Phương thức để tạo tài khoản admin mới
+    //  Tạo tài khoản admin mới, cố định là "admin" và "admin2k3"
     public Admin createAdminAccount(String username, String password) {
         return new Admin(username, password);
     }
